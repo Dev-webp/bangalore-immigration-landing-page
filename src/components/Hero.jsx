@@ -73,24 +73,24 @@ export default function Hero() {
     pickFile(e.dataTransfer.files[0]);
   };
 
-  const onSubmit = (e) => {
-  e.preventDefault();
-  const data = new FormData();
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!file) {
+      setError("Resume upload is required.");
+      return;
+    }
+    const data = new FormData();
     Object.entries(form).forEach(([k, v]) => data.append(k, v));
-    if (file) {
-  data.append("resume", file);
-}
-data.append("branch", "Bangalore");
+    data.append("resume", file);
+    data.append("branch", "Bangalore");
 
-    // TODO: backend connect cheyali (fetch POST). Ippudu console lo chustundi.
-       console.log("Form data:", Object.fromEntries(data.entries()));
-
-    window.location.assign(window.location.pathname.replace(/\/+$/, "") + "/thankyou");
-
-    setStatus("success");
-    setForm(emptyForm);
-    setFile(null);
-    setTimeout(() => setStatus("idle"), 5000);
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: data });
+      if (!res.ok) throw new Error("failed");
+      window.location.assign(window.location.pathname.replace(/\/+$/, "") + "/thankyou");
+    } catch {
+      setError("Something went wrong. Please call +91 9160449000.");
+    }
   };
 
   return (
