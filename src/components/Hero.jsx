@@ -74,14 +74,10 @@ export default function Hero() {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    if (!file) {
-      setError("Resume upload is required.");
-      return;
-    }
+        e.preventDefault();
     const data = new FormData();
     Object.entries(form).forEach(([k, v]) => data.append(k, v));
-    data.append("resume", file);
+    if (file) data.append("resume", file);
     data.append("branch", "Bangalore");
 
     try {
