@@ -8,12 +8,22 @@ import WhyTrust from "./components/WhyTrust";
 import Faq from "./components/Faq";
 import Reviews from "./components/Reviews";
 import Contact from "./pages/Contact";
+import ThankYou from "./components/ThankYou";
 export default function App() {
   if (window.location.pathname.replace(/\/+$/, "") === "/contact") {
     return (
       <>
         <Navbar />
         <Contact />
+        <Footer />
+      </>
+    );
+   }
+  if (window.location.pathname.replace(/\/+$/, "").endsWith("/thankyou")) {
+    return (
+      <>
+        <Navbar />
+        <ThankYou />
         <Footer />
       </>
     );

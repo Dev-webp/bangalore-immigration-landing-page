@@ -83,7 +83,9 @@ export default function Hero() {
 data.append("branch", "Bangalore");
 
     // TODO: backend connect cheyali (fetch POST). Ippudu console lo chustundi.
-    console.log("Form data:", Object.fromEntries(data.entries()));
+       console.log("Form data:", Object.fromEntries(data.entries()));
+
+    window.location.assign(window.location.pathname.replace(/\/+$/, "") + "/thankyou");
 
     setStatus("success");
     setForm(emptyForm);
