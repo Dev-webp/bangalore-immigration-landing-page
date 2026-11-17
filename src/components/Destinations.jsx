@@ -47,7 +47,7 @@ const countries = [
     id: "new-zealand",
     name: "New Zealand",
     tagline: "Residence and work visas",
-    visas: ["Skilled Migrant", "AEWV"],
+    visas: ["Skilled Migrant", "PR / Skilled Residence"],
     image: "/images/countries/new-zealand.jpg",
     aliases: ["new zealand", "newzealand"],
   },

@@ -74,15 +74,13 @@ export default function Hero() {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    if (!file) {
-      setError("Resume upload is required.");
-      return;
-    }
-    const data = new FormData();
+  e.preventDefault();
+  const data = new FormData();
     Object.entries(form).forEach(([k, v]) => data.append(k, v));
-    data.append("resume", file);
-    data.append("branch", "Bangalore");
+    if (file) {
+  data.append("resume", file);
+}
+data.append("branch", "Bangalore");
 
     // TODO: backend connect cheyali (fetch POST). Ippudu console lo chustundi.
     console.log("Form data:", Object.fromEntries(data.entries()));
@@ -187,7 +185,7 @@ export default function Hero() {
           </div>
 
           <div>
-            <label>UPLOAD RESUME *</label>
+<label>UPLOAD RESUME (OPTIONAL)</label>
             <label
               className={`upload ${drag ? "drag" : ""} ${file ? "has-file" : ""}`}
               onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
@@ -198,8 +196,7 @@ export default function Hero() {
               {file ? (
                 <span>✅ {file.name} <small>({(file.size / 1024).toFixed(0)} KB) · click to change</small></span>
               ) : (
-                <span>⬆ Click to upload resume (Required)<small>PDF, DOC, or DOCX (Max 5MB)</small></span>
-              )}
+<span>⬆ Click to upload resume (Optional)<small>PDF, DOC, or DOCX (Max 5MB)</small></span>              )}
             </label>
             {error && <p className="form-error">{error}</p>}
           </div>
